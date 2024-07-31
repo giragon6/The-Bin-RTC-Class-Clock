@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/EmmeM/Desktop/The Bin!",
-      "program": "c:/Users/EmmeM/Desktop/The Bin!/build/Debug/outDebug",
+      "cwd": "c:/Users/EmmeM/Desktop/Arcade [TEMP]/The Bin!",
+      "program": "c:/Users/EmmeM/Desktop/Arcade [TEMP]/The Bin!/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
