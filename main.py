@@ -2,6 +2,16 @@ from machine import I2C, Pin
 from ds3231 import DS3231 # Driver by cfpwastaken on Github
 from ssd1306 import SSD1306_I2C # Driver forked by stlehmann on Github from Micropython package
 import time
+import network
+
+print("Connecting to WiFi", end="")
+sta_if = network.WLAN(network.STA_IF)
+sta_if.active(True)
+sta_if.connect('Wokwi-GUEST', '')
+while not sta_if.isconnected() and wlan.status() >= 0:
+  print(".", end="")
+  time.sleep(1)
+print(" Connected!")
 
 RTC_I2C = I2C(0, sda=Pin(0), scl=Pin(1), freq=100000)
 rtc = DS3231(RTC_I2C)
