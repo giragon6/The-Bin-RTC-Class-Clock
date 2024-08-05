@@ -5,6 +5,7 @@ import time
 import network
 import urequests
 import re
+import json
 
 print("Connecting to WiFi", end="")
 wlan = network.WLAN(network.STA_IF)
@@ -16,15 +17,15 @@ while not wlan.isconnected():
 print(" Connected!")
 
 def get_time(timezone="America/New_York"):
+  print("Fetching time...", end="")
   URL = "http://worldtimeapi.org/api/timezone/" + timezone
-  req = urequests.get(URL)
-  datetime_json = req.json()
-  regex = re.compile("/[-:T.]/")
-  datetime = regex.split(datetime_json["datetime"])
-  datetime_tuple = tuple(datetime[0:5])
-  print(datetime_tuple)
-
-get_time()
+  res = urequests.get(URL)
+  datetime_json = res.json()
+  regex = re.compile("[-:T.]")
+  split_datetime = regex.split(datetime_json["datetime"]) 
+  datetime = tuple([int(i) for i in split_datetime[0:6]]) # (year, month, day, hour, minute, second)
+  print(" Fetched!")
+  return datetime
 
 RTC_I2C = I2C(0, sda=Pin(0), scl=Pin(1), freq=100000)
 rtc = DS3231(RTC_I2C)
@@ -32,7 +33,13 @@ rtc = DS3231(RTC_I2C)
 SSD_I2C = I2C(1, sda=Pin(2), scl=Pin(3))
 oled = SSD1306_I2C(128, 64, SSD_I2C)
 
-rtc.datetime((24, 8, 3, 2, 42, 50))
+rtc.datetime(get_time())
+print("Time synced!")
+
+with open("schedule.json") as f:
+  schedule = json.load(f)
+  print(schedule)
+  print(schedule["1_monday"][0])
 
 while True:
   oled.fill(0)
