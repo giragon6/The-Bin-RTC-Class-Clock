@@ -1,0 +1,51 @@
+{
+  "0_sunday": [ 
+    {
+      "label": "A1",
+      "start_time": [8, 30],
+      "end_time": [9, 20]
+    }
+  ],
+  "1_monday": [ 
+    {
+      "label": "A1",
+      "start_time": [8, 30],
+      "end_time": [9, 20]
+    }
+  ],
+  "2_tuesday": [ 
+    {
+      "label": "A1",
+      "start_time": [8, 30],
+      "end_time": [9, 20]
+    }
+  ],
+  "3_wednesday": [ 
+    {
+      "label": "A1",
+      "start_time": [8, 30],
+      "end_time": [9, 20]
+    }
+  ],
+  "4_thursday": [ 
+    {
+      "label": "A1",
+      "start_time": [8, 30],
+      "end_time": [9, 20]
+    }
+  ],
+  "5_friday": [ 
+    {
+      "label": "A1",
+      "start_time": [8, 30],
+      "end_time": [9, 20]
+    }
+  ],
+  "6_saturday": [ 
+    {
+      "label": "A1",
+      "start_time": [8, 30],
+      "end_time": [9, 20]
+    }
+  ]
+}
