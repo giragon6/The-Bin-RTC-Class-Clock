@@ -1,9 +1,12 @@
 {
-  "1_monday": [ 
-    {
-      "label": "A1",
-      "start_time": "8:30",
-      "end_time": "9:20"
-    }
-  ]
+  "1": {
+    "day_label": "Monday", 
+    "blocks": [ 
+      {
+        "label": "A1",
+        "start_time": "8:30:00",
+        "end_time": "9:20:00"
+      }
+    ]
+  }
 }
