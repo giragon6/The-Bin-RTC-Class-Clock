@@ -10,16 +10,15 @@ import json
 
 with open("schedule.json") as f:
   schedule = json.load(f)
-sleep(0.1)
 
-# print("Connecting to WiFi", end="")
-# wlan = network.WLAN(network.STA_IF)
-# wlan.active(True)
-# wlan.connect("Wokwi-GUEST", "")
-# while not wlan.isconnected():
-#   print(".", end="")
-#   sleep(0.1)
-# print(" Connected!")
+print("Connecting to WiFi", end="")
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect("Wokwi-GUEST", "")
+while not wlan.isconnected():
+  print(".", end="")
+  sleep(0.1)
+print(" Connected!")
 
 time_split_re = re.compile("[-:T.]") # To be used to split time strings as given by worldtimeapi
 
@@ -66,34 +65,25 @@ def get_time_between(now_secs: int, then_secs: int) -> int:
     return MIDNIGHT_SECS - (now_secs - then_secs)
   return 0
 
-# DEBUG FUNCTION -- REMOVE THIS LATER
-# connectivity issues causing fetch from worldtimeapi.org to take unreasonably long
-
-# def enter_manual_time() -> tuple[int]:
-#   time = input("Enter time: ")
-#   regex = re.compile("[-:T.]")
-#   split_datetime = regex.split(time) 
-#   datetime = tuple([int(i) for i in split_datetime[0:6]]) # (year, month, day, hour, minute, second)
-#   print(datetime)
-#   return datetime
-
 RTC_I2C = I2C(0, sda=Pin(0), scl=Pin(1), freq=100000)
 rtc = DS3231(RTC_I2C)
 
 SSD_I2C = I2C(1, sda=Pin(2), scl=Pin(3))
 oled = SSD1306_I2C(128, 64, SSD_I2C)
 
-# rtc.datetime(get_time())
-# rtc.datetime(enter_manual_time())
-rtc.datetime((2024, 8, 7, 7, 30, 30, 1))
+rtc.datetime(get_time())
 print("Time synced!")
 
 def get_next_block():
-  # day = rtc.datetime()[6]
-  day = 1
+  day = rtc.datetime()[6]
   now_secs = to_seconds(rtc.datetime()[4:7])
   blocks_secs = [get_time_between(now_secs, to_seconds(schedule[str(day)]["blocks"][block]["start_time"])) for block in schedule[str(day)]["blocks"]]
-  nearest_block = list(schedule[str(day)]["blocks"])[blocks_secs.index(min(blocks_secs))] # Finds index of block with least seconds until and accesses that index in blocks keys to get block name
+  if min(blocks_secs) != 0:
+    least_secs = min(blocks_secs)
+  else: 
+    blocks_secs.remove(min(blocks_secs))
+    least_secs = min(blocks_secs)
+  nearest_block = list(schedule[str(day)]["blocks"])[blocks_secs.index(least_secs)] # Finds index of block with least seconds until and accesses that index in blocks keys to get block name
   return nearest_block
 
 next_block = get_next_block()
@@ -103,7 +93,9 @@ while True:
   now_time = format_time(*rtc.datetime()[4:7])
   now_secs = to_seconds(now_time)
   next_block_secs = to_seconds(schedule["1"]["blocks"][next_block]["start_time"])
-  oled.text(now_time, 0, 0) # Get hours, minutes, and seconds and format them for screen
-  oled.text(str(to_time_string(get_time_between(now_secs, next_block_secs))), 0, 10)
+  oled.text(now_time, 0, 0) 
+  oled.text(("Time Until " + next_block + ":"), 0, 30) 
+  oled.text(str(to_time_string(get_time_between(now_secs, next_block_secs))), 0, 40)
+  next_block = get_next_block()
   oled.show()
   sleep(1)
