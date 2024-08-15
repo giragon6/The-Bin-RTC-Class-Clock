@@ -27,7 +27,7 @@ MIDNIGHT_SECS: int = const(86400)
 fetch_json_from_URL: str = lambda URL : urequests.get(URL).json()
 
 def get_time(timezone: str = "America/New_York") -> tuple[int]:
-  print("Fetching time...", end="")
+  print("Fetching time (this could take a while)...", end="")
   datetime_json = fetch_json_from_URL("http://worldtimeapi.org/api/timezone/" + timezone)
   split_datetime = time_split_re.split(datetime_json["datetime"]) # (year, month, day, hour, minute, second)
   day_of_week = datetime_json["day_of_week"]
@@ -74,25 +74,25 @@ oled = SSD1306_I2C(128, 64, SSD_I2C)
 rtc.datetime(get_time())
 print("Time synced!")
 
-def get_next_block():
-  day = rtc.datetime()[6]
-  now_secs = to_seconds(rtc.datetime()[4:7])
-  blocks_secs = [get_time_between(now_secs, to_seconds(schedule[str(day)]["blocks"][block]["start_time"])) for block in schedule[str(day)]["blocks"]]
+def get_next_block() -> str:
+  day: int = rtc.datetime()[6]
+  now_secs: int = to_seconds(rtc.datetime()[4:7])
+  blocks_secs: int = [get_time_between(now_secs, to_seconds(schedule[str(day)]["blocks"][block]["start_time"])) for block in schedule[str(day)]["blocks"]]
   if min(blocks_secs) != 0:
-    least_secs = min(blocks_secs)
+    least_secs: int = min(blocks_secs)
   else: 
     blocks_secs.remove(min(blocks_secs))
-    least_secs = min(blocks_secs)
-  nearest_block = list(schedule[str(day)]["blocks"])[blocks_secs.index(least_secs)] # Finds index of block with least seconds until and accesses that index in blocks keys to get block name
+    least_secs: int = min(blocks_secs)
+  nearest_block: str = list(schedule[str(day)]["blocks"])[blocks_secs.index(least_secs)] # Finds index of block with least seconds until and accesses that index in blocks keys to get block name
   return nearest_block
 
-next_block = get_next_block()
+next_block: str = get_next_block()
 
 while True:
   oled.fill(0)
-  now_time = format_time(*rtc.datetime()[4:7])
-  now_secs = to_seconds(now_time)
-  next_block_secs = to_seconds(schedule["1"]["blocks"][next_block]["start_time"])
+  now_time: str = format_time(*rtc.datetime()[4:7])
+  now_secs: int = to_seconds(now_time)
+  next_block_secs: int = to_seconds(schedule["1"]["blocks"][next_block]["start_time"])
   oled.text(now_time, 0, 0) 
   oled.text(("Time Until " + next_block + ":"), 0, 30) 
   oled.text(str(to_time_string(get_time_between(now_secs, next_block_secs))), 0, 40)
