@@ -33,19 +33,170 @@
       "G1": {
         "start_time": "14:45:00",
         "end_time": "15:35:00"
+      }
+    }
+  },
+  "2": {
+    "day_label": "Tuesday", 
+    "blocks": { 
+      "D2": {
+        "start_time": "8:30:00",
+        "end_time": "9:20:00"
       },
-      "MEETING": {
-        "start_time": "15:40:00",
-        "end_time": "17:00:00"
+      "E2": {
+        "start_time": "9:25:00",
+        "end_time": "10:15:00"
+      },
+      "A2": {
+        "start_time": "10:20:00",
+        "end_time": "11:10:00"
+      },
+      "A2L": {
+        "start_time": "11:10:00",
+        "end_time": "12:50:00"
+      },
+      "LUNCH": {
+        "start_time": "11:50:00",
+        "end_time": "12:40:00"
+      },
+      "G2": {
+        "start_time": "12:40:00",
+        "end_time": "13:20:00"
+      },
+      "G2L": {
+        "start_time": "13:20:00",
+        "end_time": "14:10:00"
+      },
+      "F2": {
+        "start_time": "14:15:00",
+        "end_time": "15:05:00"
+      },
+      "FLEX": {
+        "start_time": "15:05:00",
+        "end_time": "16:00:00"
+      }
+    }
+  },
+  "3": {
+    "day_label": "Wednesday", 
+    "blocks": { 
+      "B3": {
+        "start_time": "8:30:00",
+        "end_time": "9:20:00"
+      },
+      "D3": {
+        "start_time": "9:25:00",
+        "end_time": "10:15:00"
+      },
+      "C3": {
+        "start_time": "10:20:00",
+        "end_time": "11:10:00"
+      },
+      "C3L": {
+        "start_time": "11:10:00",
+        "end_time": "12:50:00"
+      },
+      "LUNCH": {
+        "start_time": "11:50:00",
+        "end_time": "12:40:00"
+      },
+      "E3L": {
+        "start_time": "12:40:00",
+        "end_time": "13:20:00"
+      },
+      "E3": {
+        "start_time": "13:20:00",
+        "end_time": "14:10:00"
+      },
+      "F3": {
+        "start_time": "14:15:00",
+        "end_time": "15:05:00"
+      },
+      "G3": {
+        "start_time": "15:10:00",
+        "end_time": "16:00:00"
       }
     }
   },
   "4": {
     "day_label": "Thursday", 
     "blocks": { 
-      "A1": {
+      "C4": {
         "start_time": "8:30:00",
         "end_time": "9:20:00"
+      },
+      "A4": {
+        "start_time": "9:25:00",
+        "end_time": "10:15:00"
+      },
+      "B4": {
+        "start_time": "10:20:00",
+        "end_time": "11:10:00"
+      },
+      "B4L": {
+        "start_time": "11:10:00",
+        "end_time": "12:50:00"
+      },
+      "LUNCH": {
+        "start_time": "11:50:00",
+        "end_time": "12:40:00"
+      },
+      "F4L": {
+        "start_time": "12:40:00",
+        "end_time": "13:20:00"
+      },
+      "F4": {
+        "start_time": "13:20:00",
+        "end_time": "14:10:00"
+      },
+      "G4": {
+        "start_time": "14:15:00",
+        "end_time": "15:05:00"
+      },
+      "FLEX": {
+        "start_time": "15:05:00",
+        "end_time": "16:00:00"
+      }
+    }
+  },
+  "5": {
+    "day_label": "Friday", 
+    "blocks": { 
+      "A5": {
+        "start_time": "8:30:00",
+        "end_time": "9:20:00"
+      },
+      "C5": {
+        "start_time": "9:25:00",
+        "end_time": "10:15:00"
+      },
+      "D5": {
+        "start_time": "10:20:00",
+        "end_time": "11:10:00"
+      },
+      "D5L": {
+        "start_time": "11:10:00",
+        "end_time": "12:50:00"
+      },
+      "LUNCH": {
+        "start_time": "11:50:00",
+        "end_time": "12:40:00"
+      },
+      "B5": {
+        "start_time": "12:40:00",
+        "end_time": "13:20:00"
+      },
+      "E5": {
+        "start_time": "13:20:00",
+        "end_time": "14:10:00"
+      },
+      "E5L": {
+        "start_time": "14:15:00",
+        "end_time": "15:05:00"
+      },
+      "FLEX": {
+        "start_time": "15:05:00",
+        "end_time": "16:00:00"
       }
     }
   }
